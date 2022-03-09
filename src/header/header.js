@@ -8,13 +8,14 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
+import logo from "./../images/hey-neighbor-logo.png"
 import { LinkContainer } from "react-router-bootstrap";
 const Header = () => {
   return (
     <header>
       <Navbar bg="light" expand={false}>
         <Container fluid>
-          <Navbar.Brand href="#">Hey, Neighbor</Navbar.Brand>
+          <Navbar.Brand href="/"><img src={logo}/></Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
             id="offcanvasNavbar"
@@ -64,3 +65,6 @@ const Header = () => {
 };
 
 export default Header;
+<LinkContainer to="/PostPage">
+                  <Nav.Link>New Post</Nav.Link>
+                </LinkContainer>
