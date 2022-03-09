@@ -5,3 +5,9 @@
 main{
   height: 90vh;
 }
+header{
+  background-color: white;
+}
+.bg-light{
+  background-color:none;
+}
