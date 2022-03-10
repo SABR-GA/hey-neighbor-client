@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import apiUrl from "../apiUrl";
 const Feed = () => {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/posts")
+    fetch(apiUrl + "posts")
       .then((response) => response.json())
       .then((data) => setFeed(data))
       .catch(() => console.log("whoopsie daisy you did something wrong"));
