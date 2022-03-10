@@ -1,4 +1,19 @@
 .App {
   text-align: center;
+ 
 }
-
+main{
+  height: 90vh;
+}
+header{
+  background-color: white;
+}
+.navbar.navbar-light.bg-light{
+  background-color: none;
+}
+.bg-light{
+  background-color: none;
+}
+header div.container-fluid{
+  background-color: white;
+}
