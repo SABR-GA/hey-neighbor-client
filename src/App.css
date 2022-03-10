@@ -29,9 +29,15 @@ footer{
 }
 .feed{
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+p.card-text{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
 }

@@ -27,8 +27,11 @@ const Feed = () => {
   <Card.Title><Link to={`/postPage/${post._id}`}>{post.Title}</Link>{post.Date}</Card.Title>
   <Card.Text>
   {post.Location}
+  <br/>
   {post.Description}
-    {post.Price}
+  <br/>
+    Price: ${post.Price}
+    
   </Card.Text>
   {/* <Button variant="primary">Go somewhere</Button> */}
 </Card.Body>
@@ -37,7 +40,8 @@ const Feed = () => {
   return (
     <div className="feed">
       {displayFeed}
+   
     </div>
   );
 };
-export default Feed;
+export default Feed

@@ -12,6 +12,7 @@ const NewPost = () => {
     Price: "",
     Location: "",
     Description: "",
+    Images: []
   });
 
 
@@ -91,7 +92,7 @@ const NewPost = () => {
           name="Description"
           placeholder="Description"
         />
-       
+
     <button type="Submit">Add Post</button>
       </form>
      {confirmation}
