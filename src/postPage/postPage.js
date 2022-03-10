@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {render} from 'react-dom';
 //import apiUrl from './../apiUrl'
-import postId from './../feed'
+// import postId from './../feed'
 import {useParams} from 'react-router'
 function PostPage() {
     let params = useParams()
@@ -13,7 +13,7 @@ function PostPage() {
         Description: '',
         Images: [],
         Likes: '',
-        Comments: [Subdoc],
+       
         Tags: []
 })
     const populatePostPage = (props) => {
@@ -28,13 +28,13 @@ function PostPage() {
       .catch(err => console.log(err))
     
     
-      const handleClick = () => {
-      fetch(apiUrl + '/vinyls')
-        .then(response => response.json())
-        .then(data => setVinyls(data.vinyls))
-    }
+    //   const handleClick = () => {
+    //   fetch(apiUrl + '/vinyls')
+    //     .then(response => response.json())
+    //     .then(data => setVinyls(data.vinyls))
+    // }
   
-    const commentList = comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)
+    // const commentList = comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)
   
     return (
       <div className="App">
