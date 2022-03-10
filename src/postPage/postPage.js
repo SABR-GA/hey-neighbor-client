@@ -1,54 +1,66 @@
-import {useState} from 'react';
-import {render} from 'react-dom';
+import { useEffect, useState } from 'react';
+import { render } from 'react-dom';
 //import apiUrl from './../apiUrl'
 // import postId from './../feed'
-import {useParams} from 'react-router'
+import { useParams } from 'react-router';
 function PostPage() {
-    let params = useParams()
-    const [post, setNewPost] = useState({
-        Title: '',
-        Date: '',
-        Price: '',
-        Location: '',
-        Description: '',
-        Images: [],
-        Likes: '',
-       
-        Tags: []
-})
-    const populatePostPage = (props) => {
-        fetch(`localhost:4000/posts/post/` + params.id , {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "GET",
-          body: JSON.stringify(post)
-      }).then((res)=>res.json())
-      .then((data)=>setNewPost(data))
-      .catch(err => console.log(err))
-    
-    
-    //   const handleClick = () => {
-    //   fetch(apiUrl + '/vinyls')
-    //     .then(response => response.json())
-    //     .then(data => setVinyls(data.vinyls))
-    // }
-  
-    // const commentList = comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)
-  
-    return (
-      <div className="App">
-       <h1>{post.Title}</h1>
-       <h1>{post.Date}</h1>
-       <h1>{post.Price}</h1>
-       <h1>{post.Location}</h1>
-       <h1>{post.Description}</h1>
-       <h1>{post.Images}</h1>
-       <h1>{post.Likes}</h1>
-       <h1>{post.Comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)}</h1>
-       <h1>{post.Tags}</h1>
-      
-      </div>
-    );
-  }}
-    export default PostPage
+	let params = useParams();
+	const [ post, setNewPost ] = useState({
+		Title: '',
+		Date: '',
+		Price: '',
+		Location: '',
+		Description: '',
+		Images: [],
+		Likes: '',
+		Comments: [],
+		Tags: []
+	});
+
+	useEffect(() => {
+		fetch(`http://localhost:4000/posts/post/` + params.id, {
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			method: 'GET'
+			//   body: JSON.stringify(post)
+		})
+			.then((res) => res.json())
+			//   .then((res)=>console.log(res))
+			.then((res) => setNewPost(res))
+			.catch((err) => console.log(err));
+	}, []);
+	//   const handleClick = () => {
+	//   fetch(apiUrl + '/vinyls')
+	//     .then(response => response.json())
+	//     .then(data => setVinyls(data.vinyls))
+	// }
+
+	// const commentList = comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)
+
+	return (
+		<div className="App">
+			<h1>Title: {post.Title}</h1>
+			<h1>Date: {post.Date}</h1>
+			<h1>Price: {post.Price}</h1>
+			<h1>Location: {post.Location}</h1>
+			<h1>Description: {post.Description}</h1>
+			<h1>Pictures: {post.Images}</h1>
+			<h1>
+				Comments:
+				{post.Comments.map((comments) => {
+					console.log(comments.Vote)
+                    return (
+						<ul key={comments._id}>
+							<li>{comments.Name}</li> 
+                            <li>{comments.Vote}</li>
+                            <li>{comments.Comment}</li>
+						</ul>
+					);
+				})}
+			</h1>
+			<h1>Tags: {post.Tags}</h1>
+		</div>
+	);
+}
+export default PostPage;
