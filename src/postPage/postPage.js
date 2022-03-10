@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 //import apiUrl from './../apiUrl'
 // import postId from './../feed'
 import { useParams } from 'react-router';
+
 function PostPage() {
 	let params = useParams();
 	const [ post, setNewPost ] = useState({
@@ -30,6 +31,14 @@ function PostPage() {
 			.then((res) => setNewPost(res))
 			.catch((err) => console.log(err));
 	}, []);
+
+
+    const refreshOnDelete = () => {
+        fetch(`http://localhost:4000/posts/post/` + params.id)
+			.then((res) => res.json())
+			.then((res) => setNewPost(res))
+			.catch(() => console.log('COULDNT REFRESH'));
+    }
 	//   const handleClick = () => {
 	//   fetch(apiUrl + '/vinyls')
 	//     .then(response => response.json())
@@ -37,6 +46,16 @@ function PostPage() {
 	// }
 
 	// const commentList = comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)
+
+    const handleDelete = (id) => {
+        fetch(`http://localhost:4000/comments/post/` + params.id + '/comment/' + id, {
+            method: 'DELETE'
+        })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .then(() => refreshOnDelete())
+        .catch(() => console.log('UNABLE TO DESTROY'));
+    }
 
 	return (
 		<div className="App">
@@ -55,6 +74,7 @@ function PostPage() {
 							<li>{comments.Name}</li> 
                             <li>{comments.Vote}</li>
                             <li>{comments.Comment}</li>
+                            <button onClick={() => handleDelete(comments._id)}>DELETE ME PLEASE</button>
 						</ul>
 					);
 				})}
