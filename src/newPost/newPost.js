@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+// import { Button, Modal } from "react-bootstrap";
 import { render } from "react-dom";
 import {Route, Link, Routes, } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ const NewPost = () => {
   const handleSubmitPosts = (event) => {
     event.preventDefault();
     console.log(posts);
-    fetch(`http://localhost:3000/posts/post`, {
+    fetch(`http://localhost:4000/posts/post`, {
       headers: {
         "Content-Type": "application/json",
       },
