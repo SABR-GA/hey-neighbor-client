@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { render } from "react-dom";
-//import apiUrl from './../apiUrl'
+import apiUrl from './../apiUrl'
 // import postId from './../feed'
 import { useParams } from "react-router";
 
@@ -29,7 +29,7 @@ function PostPage() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/post/` + params.id, {
+    fetch(apiUrl + `posts/post/` + params.id, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -43,7 +43,7 @@ function PostPage() {
   }, []);
 
   const refreshOnDelete = () => {
-    fetch(`http://localhost:3000/posts/post/` + params.id)
+    fetch(apiUrl + `posts/post/` + params.id)
       .then((res) => res.json())
       .then((res) => setNewPost(res))
       .catch(() => console.log("COULDNT REFRESH"));
@@ -58,7 +58,7 @@ function PostPage() {
 
   const handleDelete = (id) => {
     fetch(
-      `http://localhost:3000/comments/post/` + params.id + "/comment/" + id,
+      apiUrl + `comments/post/` + params.id + "/comment/" + id,
       {
         method: "DELETE",
       }
@@ -82,7 +82,7 @@ function PostPage() {
   const handleSubmitComment = (event) => {
     event.preventDefault();
     //console.log(comment);
-    fetch(`http://localhost:3000/comments/post/` + params.id + `/comment/`, {
+    fetch(apiUrl + `comments/post/` + params.id + `/comment/`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -143,7 +143,7 @@ function PostPage() {
     // const handleSubmitPosts = (event) => {
     //   event.preventDefault();
     //   console.log(post);
-    //   fetch(`http://localhost:3000/posts/post`, {
+    //   fetch(apiUrl + `posts/post`, {
     //     headers: {
     //       "Content-Type": "application/json",
     //     },
@@ -193,14 +193,14 @@ function PostPage() {
 
   const handleSubmitUpdate = (event) => {
     event.preventDefault();
-    fetch( `http://localhost:3000/posts/post/` + params.id, {
+    fetch( apiUrl + `posts/post/` + params.id, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "PATCH",
       body: JSON.stringify(update),
     })
-      .then(() => fetch(`http://localhost:3000/posts/post/` + params.id))
+      .then(() => fetch(apiUrl + `posts/post/` + params.id))
       .then((response) => response.json())
       .then((data) => setNewPost(data))
       .then(() => setUpdate({  Title: "",
