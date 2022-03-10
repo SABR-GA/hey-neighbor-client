@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { render } from "react-dom";
-//import apiUrl from './../apiUrl'
-// import postId from './../feed'
+
 import { useParams } from "react-router";
 
 function PostPage() {
-  //const [confirmation, setConfirmation] = useState(" ")
-
   const [comment, setComment] = useState({
     Name: "",
     Date: "",
@@ -34,10 +31,8 @@ function PostPage() {
         "Content-Type": "application/json",
       },
       method: "GET",
-      //   body: JSON.stringify(post)
     })
       .then((res) => res.json())
-      //   .then((res)=>console.log(res))
       .then((res) => setNewPost(res))
       .catch((err) => console.log(err));
   }, []);
@@ -48,13 +43,6 @@ function PostPage() {
       .then((res) => setNewPost(res))
       .catch(() => console.log("COULDNT REFRESH"));
   };
-  //   const handleClick = () => {
-  //   fetch(apiUrl + '/vinyls')
-  //     .then(response => response.json())
-  //     .then(data => setVinyls(data.vinyls))
-  // }
-
-  // const commentList = comments.map(comments => <li key={comments._id}>{comments.name}: {comments.date}: {comments.vote}: </li>)
 
   const handleDelete = (id) => {
     fetch(
@@ -64,7 +52,7 @@ function PostPage() {
       }
     )
       .then((res) => res.json())
-      //   .then((res) => console.log(res))
+
       .then(() => refreshOnDelete())
       .catch(() => console.log("UNABLE TO DESTROY"));
   };
@@ -81,7 +69,7 @@ function PostPage() {
 
   const handleSubmitComment = (event) => {
     event.preventDefault();
-    //console.log(comment);
+
     fetch(`http://localhost:4000/comments/post/` + params.id + `/comment/`, {
       headers: {
         "Content-Type": "application/json",
@@ -98,68 +86,74 @@ function PostPage() {
         });
       })
       .then(() => refreshOnDelete());
-    //   fetch(`http://localhost:4000/posts/post/` + params.id)
-    //   .then((res) => res.json())
-    //   .then((res) => setNewPost(res))
-    //    .catch(() => console.log('COULDNT REFRESH'));
   };
 
   return (
-    <Card className="App">
-      <Card.Body>
-        <Card.Text><h1>{post.Title}</h1></Card.Text>
-		<Card.Text><h1>{post.Date}</h1></Card.Text>
-		<Card.Text><h1>${post.Price}</h1></Card.Text>
-		<Card.Text><h1>Location: {post.Location}</h1></Card.Text>
-		<Card.Text><h1>{post.Description}</h1></Card.Text>
-		<Card.Text> <h1>{post.Images}</h1></Card.Text>
-        
-        
-        
-        
-       
-      </Card.Body>
-      <Form style={{ width: "18rem" }} onSubmit={handleSubmitComment} className="new-author-form">
-        {/* <Form.Label>Name</Form.Label> */}
-		<Form.Control onChange={handleChangeComment} value={comment.Name} name="Name" placeholder="Name"/>
-		{/* <input
+    <section className="post-page">
+      <Card>
+        <Card.Body>
+          <Card.Title>
+            <h1>{post.Title}</h1>
+          </Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            <h4>{post.Location}</h4>
+          </Card.Subtitle>
+          <Card.Subtitle>
+            <h2>{post.Date}</h2>
+          </Card.Subtitle>
+          <Card.Text>
+            <h3>${post.Price}</h3>
+          </Card.Text>
+          <Card.Text>
+            <p>{post.Description}</p>
+          </Card.Text>
+          <Card.Text>
+            {" "}
+            <h1>{post.Images}</h1>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <Form
+        style={{ width: "18rem" }}
+        onSubmit={handleSubmitComment}
+        className="new-comment-form"
+      >
+        <Form.Control
           onChange={handleChangeComment}
           value={comment.Name}
           name="Name"
           placeholder="Name"
-        /> */}
-		<Form.Control as="textarea" rows={3} onChange={handleChangeComment} value={comment.Comment} name="Comment" placeholder="Comment" type="text"/>
+        />
 
-        {/* <textarea
+        <Form.Control
+          as="textarea"
+          rows={3}
           onChange={handleChangeComment}
           value={comment.Comment}
           name="Comment"
           placeholder="Comment"
-        /> */}
-	<Button type="submit">Add Comment</Button>
-        {/* <button type="Submit">Add Comment</button> */}
-      </Form>
+          type="text"
+        />
 
-      {/* <Card style={{ width: "18rem" }}> */}
-        
-        {post.Comments.map((comments) => {
-        //   console.log(comments);
-          return (
-            <Card key={comments._id} style={{ width: "18rem" }}>
+        <Button type="submit">Add Comment</Button>
+      </Form>
+	<section className="comment-list">
+      {post.Comments.map((comments) => {
+        return (
+          <Card key={comments._id} style={{ width: "32rem" }}>
+            <Card.Body>
               <Card.Title>{comments.Name}</Card.Title>
-              <Card.Body>
-                <Card.Text>{comments.Vote}</Card.Text>
-                <Card.Text>{comments.Comment}</Card.Text>
-                <Button onClick={() => handleDelete(comments._id)}>
-                  DELETE ME PLEASE
-                </Button>
-              </Card.Body>
-            </Card>
-          );
-        })}
-      {/* </Card> */}
-      {/* <h1>Tags: {post.Tags}</h1> */}
-    </Card>
+              {/* <Card.Text>{comments.Vote}</Card.Text> */}
+              <Card.Text>{comments.Comment}</Card.Text>
+              <Button onClick={() => handleDelete(comments._id)}>
+                Remove Comment
+              </Button>
+            </Card.Body>
+          </Card>
+        );
+	})}
+	</section>
+    </section>
   );
 }
 export default PostPage;

@@ -49,3 +49,18 @@ p.card-text{
 div.card-title.h5{
   margin: 15px;
 }
+.post-page{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.comment-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+}
