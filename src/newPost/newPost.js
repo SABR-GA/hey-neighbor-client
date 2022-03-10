@@ -12,6 +12,7 @@ const NewPost = () => {
     Price: "",
     Location: "",
     Description: "",
+    Images: []
   });
 
 
@@ -65,7 +66,7 @@ const NewPost = () => {
   };
 
   return (
-    <>
+    <section className="new-post-page">
       <form onSubmit={handleSubmitPosts} className="new-author-form">
         <input
           onChange={handleChangePosts}
@@ -91,12 +92,12 @@ const NewPost = () => {
           name="Description"
           placeholder="Description"
         />
-       
+
     <button type="Submit">Add Post</button>
       </form>
      {confirmation}
     
-    </>
+    </section>
   );
 };
 

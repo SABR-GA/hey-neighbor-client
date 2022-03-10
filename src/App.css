@@ -1,9 +1,13 @@
 .App {
   text-align: center;
- 
+  
+  /* padding-bottom: 2.5rem */
 }
-main{
-  height: auto;
+.about{
+  /* height: 120vh; */
+}
+.new-post-page{
+  height: 90vh;
 }
 header{
   background-color: white;
@@ -25,5 +29,22 @@ header div.container-fluid{
   justify-content: center;
 }
 footer{
-  position: bottom;
+ margin-top: 20px;
+}
+.feed{
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+p.card-text{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+div.card-title.h5{
+  margin: 15px;
 }
