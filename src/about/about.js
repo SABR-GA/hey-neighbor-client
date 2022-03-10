@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const About = () => {
   return (
     <>
+    <section className="about">
       <Card>
         <Card.Title>About Us</Card.Title>
         <Card.Body>
@@ -64,7 +65,7 @@ const About = () => {
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="https://media-exp1.licdn.com/dms/image/C4E03AQEsN9V9ha7seg/profile-displayphoto-shrink_100_100/0/1644800440155?e=1652313600&v=beta&t=0YG_EkTIYNEDdVLhzkpqjeCHTa2ZyQF-6u5n4PSG__U"
+            src="https://ca.slack-edge.com/T0351JZQ0-U02RADZ8XPB-45f6ea781dbc-512"
           />
           <Card.Body>
             <Card.Title>Sam Tiso</Card.Title>
@@ -76,7 +77,7 @@ const About = () => {
               solving problems.
             </Card.Text>
             <a
-              href="https://rneyrinck.github.io/RneyrinckSePortfolio/"
+              href="https://sammywt.github.io/portfolio_project/"
               target="_blank"
             >
               <Button variant="primary">Portfolio</Button>
@@ -105,6 +106,7 @@ const About = () => {
             </a>
           </Card.Body>
         </Card>
+      </section>
       </section>
     </>
   );

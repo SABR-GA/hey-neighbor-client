@@ -66,7 +66,7 @@ const NewPost = () => {
   };
 
   return (
-    <>
+    <section className="new-post-page">
       <form onSubmit={handleSubmitPosts} className="new-author-form">
         <input
           onChange={handleChangePosts}
@@ -97,7 +97,7 @@ const NewPost = () => {
       </form>
      {confirmation}
     
-    </>
+    </section>
   );
 };
 
