@@ -5,7 +5,7 @@ const Feed = () => {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/posts")
+    fetch("http://localhost:3000/posts")
       .then((response) => response.json())
       .then((data) => setFeed(data))
       .catch(() => console.log("whoopsie daisy you did something wrong"));

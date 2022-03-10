@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 import { render } from "react-dom";
 //import apiUrl from './../apiUrl'
 // import postId from './../feed'
@@ -28,7 +29,7 @@ function PostPage() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:4000/posts/post/` + params.id, {
+    fetch(`http://localhost:3000/posts/post/` + params.id, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -42,7 +43,7 @@ function PostPage() {
   }, []);
 
   const refreshOnDelete = () => {
-    fetch(`http://localhost:4000/posts/post/` + params.id)
+    fetch(`http://localhost:3000/posts/post/` + params.id)
       .then((res) => res.json())
       .then((res) => setNewPost(res))
       .catch(() => console.log("COULDNT REFRESH"));
@@ -57,7 +58,7 @@ function PostPage() {
 
   const handleDelete = (id) => {
     fetch(
-      `http://localhost:4000/comments/post/` + params.id + "/comment/" + id,
+      `http://localhost:3000/comments/post/` + params.id + "/comment/" + id,
       {
         method: "DELETE",
       }
@@ -81,7 +82,7 @@ function PostPage() {
   const handleSubmitComment = (event) => {
     event.preventDefault();
     //console.log(comment);
-    fetch(`http://localhost:4000/comments/post/` + params.id + `/comment/`, {
+    fetch(`http://localhost:3000/comments/post/` + params.id + `/comment/`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -102,15 +103,175 @@ function PostPage() {
     //   .then((res) => setNewPost(res))
     //    .catch(() => console.log('COULDNT REFRESH'));
   };
+  function Example(props) {
+  //   const [show, setShow] = useState(false);
+  
+  //   const handleClose = () => setShow(false);
+  //   const handleShow = () => setShow(true);
+  
 
+    // const [posts, setPosts] = useState({
+    //   Title: "",
+    //   Price: "",
+    //   Location: "",
+    //   Description: "",
+    //   Images: []
+    // });
+  
+    // const handleChangeComment = (event) => {
+    //   event.persist();
+    //   setComment((prevComment) => {
+    //     const editedComment = {
+    //       ...prevComment,
+    //       [event.target.name]: event.target.value,
+    //     };
+    //     return editedComment;
+    //   });
+    // };
+  
+    // const handleChangePosts = (event) => {
+    //   event.persist();
+    //   setNewPost((prevPosts) => {
+    //     const editedPosts = {
+    //       ...prevPosts,
+    //       [event.target.name]: event.target.value,
+    //     };
+    //     return editedPosts;
+    //   });
+    // };
+  
+    // const handleSubmitPosts = (event) => {
+    //   event.preventDefault();
+    //   console.log(post);
+    //   fetch(`http://localhost:3000/posts/post`, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     method: "PATCH",
+    //     body: JSON.stringify(post),
+    //   })
+    //   .then(() => {
+    //      setNewPost({
+          // Title: "",
+          // Price: "",
+          // Location: "",
+          // Description: "",
+    //     })
+    //         })
+    //       }
+  // .then(() => {
+  //     setConfirmation(
+  //         <div>
+  //         <h1>Post Created</h1>
+  //         <a href="http://localhost:3000/#/posts" >Go back</a>
+  //         </div>
+  //     )
+  //     })
+    
+
+  const [update, setUpdate] = useState({
+    Title: props.Title,
+    Price: props.Price,
+    Location: props.Location,
+    Description: props.Description,
+  });
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleChangeUpdate = (event) => {
+    event.persist();
+    setUpdate((post) => {
+      const editedPost = {
+        ...post,
+        [event.target.name]: event.target.value,
+      };
+      return editedPost;
+    });
+  };
+
+  const handleSubmitUpdate = (event) => {
+    event.preventDefault();
+    fetch( `http://localhost:3000/posts/post/` + params.id, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+      body: JSON.stringify(update),
+    })
+      .then(() => fetch(`http://localhost:3000/posts/post/` + params.id))
+      .then((response) => response.json())
+      .then((data) => setNewPost(data))
+      .then(() => setUpdate({  Title: "",
+      Price: "",
+      Location: "",
+      Description: "", }));
+  };
+
+
+    return (
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          Update Post
+        </Button>
+  
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body><form onSubmit={handleSubmitUpdate} className="new-author-form">
+        
+        <input
+          onChange={handleChangeUpdate}
+          value={update.Title}
+          name="Title"
+          defaultValue={post.Title}
+                  />
+        <input
+          onChange={handleChangeUpdate}
+          value={update.Price}
+          name="Price"
+          defaultValue={post.Price}
+        />
+        <input
+          onChange={handleChangeUpdate}
+          value={update.Location}
+          name="Location"
+          defaultValue={post.Location}
+        />
+        <input
+          onChange={handleChangeUpdate}
+          value={update.Description}
+          name="Description"
+          defaultValue={post.Description}
+        />
+
+    <button type="Submit">Add Post</button>
+      </form></Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary"  onClick={handleClose} >
+              {/* <button> Save Changes </button> */}
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+  
+ 
   return (
     <div className="App">
-      <h1>Title: {post.Title}</h1>
-      <h1>Date: {post.Date}</h1>
-      <h1>Price: {post.Price}</h1>
-      <h1>Location: {post.Location}</h1>
-      <h1>Description: {post.Description}</h1>
-      <h1>Pictures: {post.Images}</h1>
+      
+      <h3>Title: {post.Title}</h3>
+      <h3>Date: {post.Date}</h3>
+      <h3>Price: {post.Price}</h3>
+      <h3>Location: {post.Location}</h3>
+      <h3>Description: {post.Description}</h3>
+      <h3>Pictures: {post.Images}</h3>
 
       <form onSubmit={handleSubmitComment} className="new-author-form">
         <input
@@ -127,9 +288,10 @@ function PostPage() {
         />
 
         <button type="Submit">Add Comment</button>
+        
       </form>
-
-      <h1>
+<Example post={post}/>
+      <h3>
         Comments:
         {post.Comments.map((comments) => {
           console.log(comments);
@@ -144,8 +306,8 @@ function PostPage() {
             </ul>
           );
         })}
-      </h1>
-      <h1>Tags: {post.Tags}</h1>
+      </h3>
+      <h3>Tags: {post.Tags}</h3>
     </div>
   );
 }

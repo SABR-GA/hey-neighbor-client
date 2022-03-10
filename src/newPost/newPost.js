@@ -32,7 +32,7 @@ const NewPost = () => {
   const handleSubmitPosts = (event) => {
     event.preventDefault();
     console.log(posts);
-    fetch(`http://localhost:4000/posts/post`, {
+    fetch(`http://localhost:3000/posts/post`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -51,7 +51,7 @@ const NewPost = () => {
     setConfirmation(
         <div>
         <h1>Post Created</h1>
-        <a href="http://localhost:3000/#/posts" >Go back</a>
+        <Link to='/'>Go back</Link>
         </div>
     )
     })
