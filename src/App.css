@@ -27,3 +27,11 @@ header div.container-fluid{
 footer{
   position: bottom;
 }
+.feed{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
