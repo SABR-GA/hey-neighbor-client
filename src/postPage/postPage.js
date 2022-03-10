@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button, Card, Form } from "react-bootstrap";
 import { render } from "react-dom";
 //import apiUrl from './../apiUrl'
 // import postId from './../feed'
@@ -63,7 +64,7 @@ function PostPage() {
       }
     )
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      //   .then((res) => console.log(res))
       .then(() => refreshOnDelete())
       .catch(() => console.log("UNABLE TO DESTROY"));
   };
@@ -104,49 +105,61 @@ function PostPage() {
   };
 
   return (
-    <div className="App">
-      <h1>Title: {post.Title}</h1>
-      <h1>Date: {post.Date}</h1>
-      <h1>Price: {post.Price}</h1>
-      <h1>Location: {post.Location}</h1>
-      <h1>Description: {post.Description}</h1>
-      <h1>Pictures: {post.Images}</h1>
-
-      <form onSubmit={handleSubmitComment} className="new-author-form">
-        <input
+    <Card className="App">
+      <Card.Body>
+        <Card.Text><h1>{post.Title}</h1></Card.Text>
+		<Card.Text><h1>{post.Date}</h1></Card.Text>
+		<Card.Text><h1>${post.Price}</h1></Card.Text>
+		<Card.Text><h1>Location: {post.Location}</h1></Card.Text>
+		<Card.Text><h1>{post.Description}</h1></Card.Text>
+		<Card.Text> <h1>{post.Images}</h1></Card.Text>
+        
+        
+        
+        
+       
+      </Card.Body>
+      <Form style={{ width: "18rem" }} onSubmit={handleSubmitComment} className="new-author-form">
+        {/* <Form.Label>Name</Form.Label> */}
+		<Form.Control onChange={handleChangeComment} value={comment.Name} name="Name" placeholder="Name"/>
+		{/* <input
           onChange={handleChangeComment}
           value={comment.Name}
           name="Name"
           placeholder="Name"
-        />
-        <textarea
+        /> */}
+		<Form.Control as="textarea" rows={3} onChange={handleChangeComment} value={comment.Comment} name="Comment" placeholder="Comment" type="text"/>
+
+        {/* <textarea
           onChange={handleChangeComment}
           value={comment.Comment}
           name="Comment"
           placeholder="Comment"
-        />
+        /> */}
+	<Button type="submit">Add Comment</Button>
+        {/* <button type="Submit">Add Comment</button> */}
+      </Form>
 
-        <button type="Submit">Add Comment</button>
-      </form>
-
-      <h1>
-        Comments:
+      {/* <Card style={{ width: "18rem" }}> */}
+        
         {post.Comments.map((comments) => {
-          console.log(comments);
+        //   console.log(comments);
           return (
-            <ul key={comments._id}>
-              <li>{comments.Name}</li>
-              <li>{comments.Vote}</li>
-              <li>{comments.Comment}</li>
-              <button onClick={() => handleDelete(comments._id)}>
-                DELETE ME PLEASE
-              </button>
-            </ul>
+            <Card key={comments._id} style={{ width: "18rem" }}>
+              <Card.Title>{comments.Name}</Card.Title>
+              <Card.Body>
+                <Card.Text>{comments.Vote}</Card.Text>
+                <Card.Text>{comments.Comment}</Card.Text>
+                <Button onClick={() => handleDelete(comments._id)}>
+                  DELETE ME PLEASE
+                </Button>
+              </Card.Body>
+            </Card>
           );
         })}
-      </h1>
-      <h1>Tags: {post.Tags}</h1>
-    </div>
+      {/* </Card> */}
+      {/* <h1>Tags: {post.Tags}</h1> */}
+    </Card>
   );
 }
 export default PostPage;
