@@ -3,7 +3,7 @@
  
 }
 main{
-  height: 90vh;
+  height: auto;
 }
 header{
   background-color: white;
@@ -16,4 +16,14 @@ header{
 }
 header div.container-fluid{
   background-color: white;
+}
+.dev-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+footer{
+  position: bottom;
 }
