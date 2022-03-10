@@ -13,14 +13,15 @@ import { LinkContainer } from "react-router-bootstrap";
 const Header = () => {
   return (
     <header>
-      <Navbar bg="light" expand={false}>
+      <Navbar bg="light" expand={false} collapseOnSelect={true}>
         <Container fluid>
-          <Navbar.Brand href="/"><img src={logo}/></Navbar.Brand>
+          <Navbar.Brand href="/" ><img src={logo}/></Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
             placement="end"
+            
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
