@@ -20,6 +20,7 @@ function App() {
         
         <Route path="/NewPost" element={<NewPost />} />
         <Route path="/About" element={<About />}></Route>
+        <Route path="/postPage/:id" element={<PostPage />} />
       </Routes>
       </main>
       <Footer />
