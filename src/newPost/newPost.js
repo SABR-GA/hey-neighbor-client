@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 // import { Button, Modal } from "react-bootstrap";
 import { render } from "react-dom";
 import {Route, Link, Routes, } from 'react-router-dom'
-
+import apiUrl from './../apiUrl'
 
 const NewPost = () => {
   const [confirmation, setConfirmation] = useState(" ")
@@ -33,7 +33,7 @@ const NewPost = () => {
   const handleSubmitPosts = (event) => {
     event.preventDefault();
     console.log(posts);
-    fetch(`http://localhost:4000/posts/post`, {
+    fetch(apiUrl + `posts/post`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -52,13 +52,15 @@ const NewPost = () => {
     setConfirmation(
         <div>
         <h1>Post Created</h1>
-        <a href="http://localhost:3000/#/" >Go back</a>
+
+        <Link to='/'>Go back</Link>
+
         </div>
     )
     })
 
 
-    //   .then(() => fetch(`http://localhost:3000/posts/post`))
+    //   .then(() => fetch(apiUrl + `posts/post`))
     //   .then((response) => response.json())
     //   .then((data) => setAuthors(data))
     //   .then(() => setPosts({  Title: "",
