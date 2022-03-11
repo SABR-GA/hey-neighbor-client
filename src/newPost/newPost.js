@@ -114,6 +114,12 @@ const NewPost = () => {
         />
         <Form.Control
           onChange={handleChangePosts}
+          value={posts.Location}
+          name="Location"
+          placeholder="Location"
+        />
+        <Form.Control
+          onChange={handleChangePosts}
           value={posts.Price}
           name="Price"
           type="number"
