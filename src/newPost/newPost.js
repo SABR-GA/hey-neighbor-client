@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 // import { Button, Modal } from "react-bootstrap";
@@ -51,7 +52,9 @@ const NewPost = () => {
     setConfirmation(
         <div>
         <h1>Post Created</h1>
+
         <Link to='/'>Go back</Link>
+
         </div>
     )
     })
@@ -68,7 +71,7 @@ const NewPost = () => {
 
   return (
     <section className="new-post-page">
-      <form onSubmit={handleSubmitPosts} className="new-author-form">
+      {/* <form onSubmit={handleSubmitPosts} className="new-author-form">
         
         <input
           onChange={handleChangePosts}
@@ -96,27 +99,39 @@ const NewPost = () => {
         />
 
     <button type="Submit">Add Post</button>
-      </form>
-      {/* <Form>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
+      </form> */}
+      <Form 
+        style={{ width: "18rem" }}
+        onSubmit={handleSubmitPosts}
+        className="new-comment-form"
+      >
+      <Form.Label><h1>New Post</h1></Form.Label>
+        <Form.Control
+          onChange={handleChangePosts}
+          value={posts.Title}
+          name="Title"
+          placeholder="Title"
+        />
+        <Form.Control
+          onChange={handleChangePosts}
+          value={posts.Price}
+          name="Price"
+          placeholder="Price"
+        />
 
-  <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form> */}
+        <Form.Control
+          as="textarea"
+          rows={3}
+          onChange={handleChangePosts}
+          value={posts.Description}
+          name="Description"
+          placeholder="Description"
+          type="text"
+        />
+
+        <Button type="submit" className="new-post-button">Add Comment</Button>
+      </Form>
+    
      {confirmation}
     
     </section>

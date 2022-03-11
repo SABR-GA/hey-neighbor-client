@@ -13,7 +13,7 @@ import { LinkContainer } from "react-router-bootstrap";
 const Header = () => {
   return (
     <header>
-      <Navbar bg="light" expand={false} collapseOnSelect={true}>
+      <Navbar expand={false} collapseOnSelect={true}>
         <Container fluid>
           <Navbar.Brand href="/" ><img src={logo}/></Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
@@ -24,18 +24,18 @@ const Header = () => {
             
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+              <Offcanvas.Title id="offcanvasNavbarLabel"><h3>Menu</h3></Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <LinkContainer to="/">
-                  <Nav.Link>Feed</Nav.Link>
+                  <Nav.Link><h4>Feed</h4></Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/NewPost">
-                  <Nav.Link>New Post</Nav.Link>
+                  <Nav.Link><h4>New Post</h4></Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/About">
-                  <Nav.Link>About</Nav.Link>
+                  <Nav.Link><h4>About</h4></Nav.Link>
                 </LinkContainer>
                 {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
