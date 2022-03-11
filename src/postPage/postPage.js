@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, Modal } from "react-bootstrap";
 import { render } from "react-dom";
 import apiUrl from './../apiUrl'
 
