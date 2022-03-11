@@ -5,7 +5,7 @@ let apiUrl
 if (window.location.hostname === 'localhost') {
   apiUrl = 'http://localhost:4000/' 
 } else {
-  apiUrl = ''
+  apiUrl = 'https://vast-refuge-76491.herokuapp.com/'
 }
 
 // export api url
