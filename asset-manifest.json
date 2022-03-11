@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hey-neighbor-client/static/css/main.302534f3.css",
+    "main.js": "/hey-neighbor-client/static/js/main.ba1bbec5.js",
+    "index.html": "/hey-neighbor-client/index.html",
+    "main.302534f3.css.map": "/hey-neighbor-client/static/css/main.302534f3.css.map",
+    "main.ba1bbec5.js.map": "/hey-neighbor-client/static/js/main.ba1bbec5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.302534f3.css",
+    "static/js/main.ba1bbec5.js"
+  ]
+}
