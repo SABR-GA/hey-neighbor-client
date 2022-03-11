@@ -116,6 +116,7 @@ const NewPost = () => {
           onChange={handleChangePosts}
           value={posts.Price}
           name="Price"
+          type="number"
           placeholder="Price"
         />
 
