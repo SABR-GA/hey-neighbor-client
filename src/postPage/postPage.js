@@ -208,43 +208,44 @@ function PostPage() {
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Modal.Body><form onSubmit={handleSubmitUpdate} className="new-author-form">
+          <Modal.Body><Form onSubmit={handleSubmitUpdate} className="new-author-form">
         
-        <input
+        <Form.Control
           onChange={handleChangeUpdate}
           value={update.Title}
           name="Title"
           defaultValue={post.Title}
                   />
-        <input
+        <Form.Control
           onChange={handleChangeUpdate}
           value={update.Price}
           name="Price"
           defaultValue={post.Price}
         />
-        <input
+        <Form.Control
           onChange={handleChangeUpdate}
           value={update.Location}
           name="Location"
           defaultValue={post.Location}
         />
-        <input
+        <Form.Control
           onChange={handleChangeUpdate}
           value={update.Description}
           name="Description"
           defaultValue={post.Description}
+		  as="textarea"
+          rows={3}
         />
 
-    <button type="Submit">Add Post</button>
-      </form></Modal.Body>
+<Button variant="primary" type="submit" className="save-changes">
+              {/* <button> Save Changes </button> */}Save Changes
+            </Button>
+      </Form></Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary"  onClick={handleClose} >
-              {/* <button> Save Changes </button> */}
-            </Button>
-          </Modal.Footer>
+       </Modal.Footer>
         </Modal>
       </>
     );
@@ -275,6 +276,7 @@ function PostPage() {
             {" "}
             <h1>{post.Images}</h1>
           </Card.Text>
+		<Example post={post}/>
         </Card.Body>
       </Card>
       <Form
