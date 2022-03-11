@@ -10,12 +10,13 @@ import {
 } from "react-bootstrap";
 import logo from "./../images/hey-neighbor-logo.png"
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header>
       <Navbar expand={false} collapseOnSelect={true}>
         <Container fluid>
-          <Navbar.Brand href="/" ><img src={logo}/></Navbar.Brand>
+          <Link to='/'><Navbar.Brand ><img src={logo}/></Navbar.Brand></Link>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
             id="offcanvasNavbar"
